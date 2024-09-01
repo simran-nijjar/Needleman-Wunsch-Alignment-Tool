@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from needleman_wunsch_algorithm import needleman_wunsch
 from idlelib.tooltip import Hovertip
+from tkinter import ttk
 
 # Method to check if string sequences are valid
 def is_valid_sequence(seq):
@@ -20,13 +21,13 @@ def on_submit():
     seq1 = entry_seq1.get()
     seq2 = entry_seq2.get()
 
-    if not is_valid_sequence(seq1) or not is_valid_sequence(seq2):
-        messagebox.showerror("Input Error", "Sequences must only contain A, T, C, or G")
+    if not seq1 or not seq2 or is_valid_sequence(seq1) or not is_valid_sequence(seq2):
+        messagebox.showerror("Input Error", "Enter a sequence that only use A,T,C, and G characters")
         return
     try:
-        match_score = int(entry_match.get())
-        mismatch_score = int(entry_mismatch.get())
-        gap_penalty = int(entry_gap.get())
+        match_score = int(match_combobox.get())
+        mismatch_score = int(mismatch_combobox.get())
+        gap_penalty = int(gap_combobox.get())
 
         if not is_match_score_valid(match_score):
             messagebox.showerror("Input Error", "Match score must be between 0 and 10")
@@ -62,27 +63,37 @@ root.title("Needleman-Wunsch Alignment Tool")
 tk.Label(root, text="Sequence 1:").grid(row=0, column=0, padx=10, pady=10)
 entry_seq1 = tk.Entry(root, width=30)
 entry_seq1.grid(row=0, column=1, padx=10, pady=10)
-seq1tip = Hovertip(entry_seq1, 'Sequences must only contain A, T, C, or G')
+seq1_tip = tk.Label(root, text="?", fg="blue")
+seq1_tip.grid(row=0, column=2, padx=5, pady=10)
+Hovertip(seq1_tip, 'Sequences must only contain A, T, C, or G')
 
 tk.Label(root, text="Sequence 2:").grid(row=1, column=0, padx=10, pady=10)
 entry_seq2 = tk.Entry(root, width=30)
 entry_seq2.grid(row=1, column=1, padx=10, pady=10)
-seq2tip = Hovertip(entry_seq2, 'Sequences must only contain A, T, C, or G')
+seq2_tip = tk.Label(root, text="?", fg="blue")
+seq2_tip.grid(row=1, column=2, padx=5, pady=10)
+Hovertip(seq2_tip, 'Sequences must only contain A, T, C, or G')
 
 tk.Label(root, text="Match Score:").grid(row=2, column=0, padx=10, pady=10)
-entry_match = tk.Entry(root, width=10)
-entry_match.grid(row=2, column=1, padx=10, pady=10)
-match_tip = Hovertip(entry_match, 'Match score must be between 0 and 10')
+match_values = [i for i in range(0, 11)]  # Values from 0 to 10
+match_combobox = ttk.Combobox(root, values=match_values, state="readonly")
+match_combobox.grid(row=2, column=1, padx=10, pady=10)
+match_combobox.set(1)  # Default value
+match_tip = Hovertip(match_combobox, 'Match score must be between 0 and 10')
 
 tk.Label(root, text="Mismatch/Indel Score:").grid(row=3, column=0, padx=10, pady=10)
-entry_mismatch = tk.Entry(root, width=10)
-entry_mismatch.grid(row=3, column=1, padx=10, pady=10)
-mismatch_tip = Hovertip(entry_mismatch, 'Mismatch/indel score must be between -5 and -1')
+mismatch_values = [i for i in range(-5, 0)]  # Values from -5 to -1
+mismatch_combobox = ttk.Combobox(root, values=mismatch_values, state="readonly")
+mismatch_combobox.grid(row=3, column=1, padx=10, pady=10)
+mismatch_combobox.set(-1)  # Default value
+mismatch_tip = Hovertip(mismatch_combobox, 'Mismatch/indel score must be between -5 and -1')
 
 tk.Label(root, text="Gap Penalty:").grid(row=4, column=0, padx=10, pady=10)
-entry_gap = tk.Entry(root, width=10)
-entry_gap.grid(row=4, column=1, padx=10, pady=10)
-gap_tip = Hovertip(entry_gap, 'Gap penalty must be between -5 and -1')
+gap_values = [i for i in range(-5, 0)]  # Values from -5 to -1
+gap_combobox = ttk.Combobox(root, values=gap_values, state="readonly")
+gap_combobox.grid(row=4, column=1, padx=10, pady=10)
+gap_combobox.set(-1)  # Default value
+gap_tip = Hovertip(gap_combobox, 'Gap penalty must be between -5 and -1')
 
 submit_button = tk.Button(root, text="Align", command=on_submit)
 submit_button.grid(row=5, column=1, padx=10, pady=20)
