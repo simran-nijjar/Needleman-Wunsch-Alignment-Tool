@@ -73,4 +73,4 @@ def needleman_wunsch(seq1, seq2, match, mismatch, gap):
         align2.append(seq2[j-1])
         j -= 1
 
-    return ''.join(align1[::-1]), ''.join(align2[::-1]), score_matrix[len1][len2]
+    return ''.join(align1[::-1]), ''.join(align2[::-1]), score_matrix[len1][len2], score_matrix
