@@ -9,8 +9,8 @@ def on_submit():
     seq2 = entry_seq2.get()
     try:
         match_score = int(entry_match.get())
-        mismatch_score = int(entry_match.get())
-        gap_penalty = int(entry_match.get())
+        mismatch_score = int(entry_mismatch.get())
+        gap_penalty = int(entry_gap.get())
     except ValueError:
         messagebox.showerror("Input Error", "Please enter valid characters")
         return
