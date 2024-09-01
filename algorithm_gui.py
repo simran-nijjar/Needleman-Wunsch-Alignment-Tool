@@ -4,15 +4,22 @@ import tkinter as tk
 from tkinter import messagebox
 from needleman_wunsch_algorithm import needleman_wunsch
 
+def is_valid_sequence(seq):
+    return all(char in 'ATGC' for char in seq)
+
 def on_submit():
     seq1 = entry_seq1.get()
     seq2 = entry_seq2.get()
+
+    if not is_valid_sequence(seq1) or not is_valid_sequence(seq2):
+        messagebox.showerror("Input Error", "Sequences must only contain A, T, C, or G")
+        return
     try:
         match_score = int(entry_match.get())
         mismatch_score = int(entry_mismatch.get())
         gap_penalty = int(entry_gap.get())
     except ValueError:
-        messagebox.showerror("Input Error", "Please enter valid characters")
+        messagebox.showerror("Input Error", "Sequences must only contain A, T, C, or G")
         return
 
     align1, align2, score = needleman_wunsch(seq1, seq2, match_score, mismatch_score, gap_penalty)
