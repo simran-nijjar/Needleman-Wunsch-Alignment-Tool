@@ -21,7 +21,7 @@ def on_submit():
     seq1 = entry_seq1.get()
     seq2 = entry_seq2.get()
 
-    if not seq1 or not seq2 or is_valid_sequence(seq1) or not is_valid_sequence(seq2):
+    if not seq1 or not seq2 or not is_valid_sequence(seq1) or not is_valid_sequence(seq2):
         messagebox.showerror("Input Error", "Enter a sequence that only use A,T,C, and G characters")
         return
     try:
@@ -48,12 +48,8 @@ def on_submit():
     result_label.config(text=f"Alignment 1: {align1}\nAlignment 2: {align2}\nScore: {score}")
 
     # Display the score matrix
-    matrix_text = ""
-    for row in score_matrix:
-        row_text = ', '.join(map(str, row))
-        matrix_text += f"[{row_text}]\n"
     matrix_text_widget.delete(1.0, tk.END)
-    matrix_text_widget.insert(tk.END, matrix_text)
+    matrix_text_widget.insert(tk.END, "\n".join(score_matrix))
 
 # Create the main window
 root = tk.Tk()
