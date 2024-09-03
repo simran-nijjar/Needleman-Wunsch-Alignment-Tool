@@ -21,4 +21,4 @@ Gap penalty: -1
 ```
 The following is the result:
 
-<img src="Images/output.png" width="200">
+<img src="Images/output.png" width="500">
