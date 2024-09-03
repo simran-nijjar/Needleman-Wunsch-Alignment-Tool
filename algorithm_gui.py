@@ -54,6 +54,7 @@ def on_submit():
 # Create the main window
 root = tk.Tk()
 root.title("Needleman-Wunsch Alignment Tool")
+root.resizable(False, False)
 
 # Pop-up box labels
 
