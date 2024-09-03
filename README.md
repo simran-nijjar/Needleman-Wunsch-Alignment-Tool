@@ -20,4 +20,5 @@ Mistmatch/Indel score: -1
 Gap penalty: -1
 ```
 The following is the result:
-![Output](Images/output.png)
+
+<img src="Images/output.png" width="200">
