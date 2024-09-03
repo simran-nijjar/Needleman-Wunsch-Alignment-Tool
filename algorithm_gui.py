@@ -56,6 +56,8 @@ root = tk.Tk()
 root.title("Needleman-Wunsch Alignment Tool")
 
 # Pop-up box labels
+
+# Sequence 1
 tk.Label(root, text="Sequence 1:").grid(row=0, column=0, padx=10, pady=10)
 entry_seq1 = tk.Entry(root, width=30)
 entry_seq1.grid(row=0, column=1, padx=10, pady=10)
@@ -63,6 +65,7 @@ seq1_tip = tk.Label(root, text="?", fg="blue")
 seq1_tip.grid(row=0, column=2, padx=5, pady=10)
 Hovertip(seq1_tip, 'Sequences must only contain A, T, C, or G')
 
+# Sequence 2
 tk.Label(root, text="Sequence 2:").grid(row=1, column=0, padx=10, pady=10)
 entry_seq2 = tk.Entry(root, width=30)
 entry_seq2.grid(row=1, column=1, padx=10, pady=10)
@@ -70,6 +73,7 @@ seq2_tip = tk.Label(root, text="?", fg="blue")
 seq2_tip.grid(row=1, column=2, padx=5, pady=10)
 Hovertip(seq2_tip, 'Sequences must only contain A, T, C, or G')
 
+# Match score
 tk.Label(root, text="Match Score:").grid(row=2, column=0, padx=10, pady=10)
 match_values = [i for i in range(0, 11)]  # Values from 0 to 10
 match_combobox = ttk.Combobox(root, values=match_values, state="readonly")
@@ -77,6 +81,7 @@ match_combobox.grid(row=2, column=1, padx=10, pady=10)
 match_combobox.set(1)  # Default value
 match_tip = Hovertip(match_combobox, 'Match score must be between 0 and 10')
 
+# Mismatch/Indel score
 tk.Label(root, text="Mismatch/Indel Score:").grid(row=3, column=0, padx=10, pady=10)
 mismatch_values = [i for i in range(-5, 0)]  # Values from -5 to -1
 mismatch_combobox = ttk.Combobox(root, values=mismatch_values, state="readonly")
@@ -84,6 +89,7 @@ mismatch_combobox.grid(row=3, column=1, padx=10, pady=10)
 mismatch_combobox.set(-1)  # Default value
 mismatch_tip = Hovertip(mismatch_combobox, 'Mismatch/indel score must be between -5 and -1')
 
+# Gap penalty
 tk.Label(root, text="Gap Penalty:").grid(row=4, column=0, padx=10, pady=10)
 gap_values = [i for i in range(-5, 0)]  # Values from -5 to -1
 gap_combobox = ttk.Combobox(root, values=gap_values, state="readonly")
@@ -91,12 +97,15 @@ gap_combobox.grid(row=4, column=1, padx=10, pady=10)
 gap_combobox.set(-1)  # Default value
 gap_tip = Hovertip(gap_combobox, 'Gap penalty must be between -5 and -1')
 
-submit_button = tk.Button(root, text="Align", command=on_submit)
-submit_button.grid(row=5, column=1, padx=10, pady=20)
+# Align button
+align_button = tk.Button(root, text="Align", command=on_submit)
+align_button.grid(row=5, column=1, padx=10, pady=20)
 
+# Alignment output
 result_label = tk.Label(root, text="", justify=tk.LEFT)
 result_label.grid(row=6, column=0, columnspan=2, padx=10, pady=10)
 
+# Score matrix output
 tk.Label(root, text="Score Matrix:").grid(row=7, column=0, padx=10, pady=10)
 matrix_label = tk.Label(root, text="", justify=tk.LEFT, anchor="nw", font=("Courier", 10))
 matrix_label.grid(row=8, column=0, columnspan=2, padx=10, pady=10)
