@@ -48,8 +48,8 @@ def on_submit():
     result_label.config(text=f"Alignment 1: {align1}\nAlignment 2: {align2}\nScore: {score}")
 
     # Display the score matrix
-    matrix_text_widget.delete(1.0, tk.END)
-    matrix_text_widget.insert(tk.END, "\n".join(score_matrix))
+    matrix_display = "\n".join(score_matrix)
+    matrix_label.config(text=matrix_display)
 
 # Create the main window
 root = tk.Tk()
@@ -98,8 +98,8 @@ result_label = tk.Label(root, text="", justify=tk.LEFT)
 result_label.grid(row=6, column=0, columnspan=2, padx=10, pady=10)
 
 tk.Label(root, text="Score Matrix:").grid(row=7, column=0, padx=10, pady=10)
-matrix_text_widget = tk.Text(root, width=50, height=10)
-matrix_text_widget.grid(row=8, column=0, columnspan=2, padx=10, pady=10)
+matrix_label = tk.Label(root, text="", justify=tk.LEFT, anchor="nw", font=("Courier", 10))
+matrix_label.grid(row=8, column=0, columnspan=2, padx=10, pady=10)
 
 # Run the GUI event loop
 root.mainloop()
