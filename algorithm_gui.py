@@ -21,6 +21,10 @@ def on_submit():
     seq1 = entry_seq1.get()
     seq2 = entry_seq2.get()
 
+    # Convert sequence to uppercase
+    seq1 = seq1.upper()
+    seq2 = seq2.upper()
+
     if not seq1 or not seq2 or not is_valid_sequence(seq1) or not is_valid_sequence(seq2):
         messagebox.showerror("Input Error", "Enter a sequence that only use A,T,C, and G characters")
         return
