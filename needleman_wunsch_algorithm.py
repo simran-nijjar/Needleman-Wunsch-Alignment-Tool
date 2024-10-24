@@ -33,11 +33,11 @@ def needleman_wunsch(seq1, seq2, match, mismatch, gap):
     display_matrix.append(f"    -{header}")
 
     # First row with the initial gap penalties
-    first_row = ["-"] + [f"{score_matrix[0][j]:2}" for j in range(len1 + 1)]
+    first_row = ["-"] + [f"{score_matrix[0][j]:2}" for j in range(len2 + 1)]
     display_matrix.append("  ".join(first_row))
 
     # Remaining rows with seq2 on the left and score matrix values
-    for i in range(1, len2 + 1):
+    for i in range(1, len1 + 1):
         row = [seq1[i - 1]] + [f"{score_matrix[i][j]:2}" for j in range(len2 + 1)]
         display_matrix.append("  ".join(row))
 
