@@ -16,7 +16,7 @@ Using the following values as the input:
 Sequence 1: GCAA
 Sequence 2: GAGA
 Match score: 1
-Mistmatch/Indel score: -1
+Mismatch/Indel score: -1
 Gap penalty: -1
 ```
 The following is the result:
